@@ -1,0 +1,11 @@
+./chunk.go
+./chunk_util.go
+./codec.go
+./column.go
+./compare.go
+./iterator.go
+./list.go
+./mutrow.go
+./pool.go
+./recordbatch.go
+./row.go

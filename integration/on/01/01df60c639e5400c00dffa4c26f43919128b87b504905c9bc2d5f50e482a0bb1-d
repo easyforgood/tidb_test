@@ -1,0 +1,7 @@
+./domain.go
+./domainctx.go
+./global_vars_cache.go
+./info.go
+./schema_checker.go
+./schema_validator.go
+./topn_slow_query.go

@@ -1,0 +1,5 @@
+./hash.go
+./list.go
+./string.go
+./structure.go
+./type.go

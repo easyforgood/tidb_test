@@ -1,0 +1,6 @@
+./analyze.pb.go
+./checksum.pb.go
+./executor.pb.go
+./expression.pb.go
+./schema.pb.go
+./select.pb.go

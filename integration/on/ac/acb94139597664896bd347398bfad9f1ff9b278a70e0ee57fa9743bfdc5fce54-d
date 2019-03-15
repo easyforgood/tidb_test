@@ -1,0 +1,11 @@
+./collector.go
+./doc.go
+./event.go
+./id.go
+./memstats.go
+./multi.go
+./recorder.go
+./reflect.go
+./span.go
+./store.go
+./trace.go

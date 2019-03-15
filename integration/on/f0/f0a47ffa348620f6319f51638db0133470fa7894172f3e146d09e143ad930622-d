@@ -1,0 +1,6 @@
+./bytes.go
+./codec.go
+./decimal.fail.go
+./decimal.go
+./float.go
+./number.go

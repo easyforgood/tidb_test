@@ -1,0 +1,4 @@
+./logical_property.go
+./physical_property.go
+./stats_info.go
+./task_type.go

@@ -1,0 +1,4 @@
+./binary.go
+./common.go
+./common_darwin.go
+./common_unix.go
