@@ -2,8 +2,8 @@
 
 node {
     def TIDB_TEST_BRANCH = "master"
-    def TIKV_BRANCH = "master"
-    def PD_BRANCH = "master"
+    // def TIKV_BRANCH = "master"
+    // def PD_BRANCH = "master"
 
     environment {
         PATH = "$PATH:/usr/local/bin"
