@@ -3,7 +3,7 @@ package integration_test
 import (
 	"context"
 	"fmt"
-	"testing"
+	// "testing"
 	"time"
 
 	. "github.com/pingcap/check"
