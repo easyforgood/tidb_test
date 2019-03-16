@@ -67,25 +67,25 @@ func (s *RegionRequestSender) SendReq(bo *Backoffer, req *tikvrpc.Request, regio
 // SendReqCtx sends a request to tikv server and return response and RPCCtx of this RPC.
 func (s *RegionRequestSender) SendReqCtx(bo *Backoffer, req *tikvrpc.Request, regionID RegionVerID, timeout time.Duration) (*tikvrpc.Response, *RPCContext, error) {
 
-	if vtikvStoreSendReqResult, __fpErr := __fp_tikvStoreSendReqResult.Acquire(); __fpErr == nil { defer __fp_tikvStoreSendReqResult.Release(); tikvStoreSendReqResult, __fpTypeOK := vtikvStoreSendReqResult.(string); if !__fpTypeOK { goto __badTypetikvStoreSendReqResult} 
-		 switch tikvStoreSendReqResult {
-		 case "timeout":
-		 	 return nil, nil, errors.New("timeout")
-		 case "GCNotLeader":
-		 	 if req.Type == tikvrpc.CmdGC {
-				 return &tikvrpc.Response{
-					 Type:   tikvrpc.CmdGC,
-					 GC: &kvrpcpb.GCResponse{RegionError: &errorpb.Error{NotLeader: &errorpb.NotLeader{}}},
-				 }, nil, nil
-			 }
-		 case "GCServerIsBusy":
-			 if req.Type == tikvrpc.CmdGC {
-				 return &tikvrpc.Response{
-					 Type: tikvrpc.CmdGC,
-					 GC:   &kvrpcpb.GCResponse{RegionError: &errorpb.Error{ServerIsBusy: &errorpb.ServerIsBusy{}}},
-				 }, nil, nil
-			 }
-		 }; __badTypetikvStoreSendReqResult: __fp_tikvStoreSendReqResult.BadType(vtikvStoreSendReqResult, "string"); };
+	// gofail: var tikvStoreSendReqResult string
+	// switch tikvStoreSendReqResult {
+	// case "timeout":
+	// 	 return nil, nil, errors.New("timeout")
+	// case "GCNotLeader":
+	// 	 if req.Type == tikvrpc.CmdGC {
+	//		 return &tikvrpc.Response{
+	//			 Type:   tikvrpc.CmdGC,
+	//			 GC: &kvrpcpb.GCResponse{RegionError: &errorpb.Error{NotLeader: &errorpb.NotLeader{}}},
+	//		 }, nil, nil
+	//	 }
+	// case "GCServerIsBusy":
+	//	 if req.Type == tikvrpc.CmdGC {
+	//		 return &tikvrpc.Response{
+	//			 Type: tikvrpc.CmdGC,
+	//			 GC:   &kvrpcpb.GCResponse{RegionError: &errorpb.Error{ServerIsBusy: &errorpb.ServerIsBusy{}}},
+	//		 }, nil, nil
+	//	 }
+	// }
 
 	for {
 		ctx, err := s.regionCache.GetRPCContext(bo, regionID)
