@@ -1,5 +1,0 @@
-./const.go
-./errors.go
-./helper.go
-./plugin.go
-./spi.go
