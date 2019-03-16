@@ -1,11 +1,10 @@
 #!groovy
 
-
 node {
     def TIDB_TEST_BRANCH = "master"
     def TIKV_BRANCH = "master"
     def PD_BRANCH = "master"
-    
+
     environment {
         PATH = "$PATH:/usr/local/bin"
     }
@@ -55,7 +54,7 @@ node {
                sh "make test"
             }
             dir("pd"){
-               sh "make test"
+               // sh "make test"
             }
             dir("tikv"){
                sh "make test"
