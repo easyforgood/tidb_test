@@ -322,11 +322,11 @@ func (s *session) doCommit(ctx context.Context) error {
 	}
 
 	// mockCommitError and mockGetTSErrorInRetry use to test PR #8743.
-	if vmockCommitError, __fpErr := __fp_mockCommitError.Acquire(); __fpErr == nil { defer __fp_mockCommitError.Release(); mockCommitError, __fpTypeOK := vmockCommitError.(bool); if !__fpTypeOK { goto __badTypemockCommitError} 
-		 if mockCommitError && mockCommitErrorOnce {
-			mockCommitErrorOnce = false
-			return kv.ErrRetryable
-		 }; __badTypemockCommitError: __fp_mockCommitError.BadType(vmockCommitError, "bool"); };
+	// gofail: var mockCommitError bool
+	// if mockCommitError && mockCommitErrorOnce {
+	//	mockCommitErrorOnce = false
+	//	return kv.ErrRetryable
+	// }
 
 	if s.sessionVars.BinlogClient != nil {
 		prewriteValue := binloginfo.GetPrewriteValue(s, false)
@@ -1320,6 +1320,14 @@ func BootstrapSession(store kv.Storage) (*domain.Domain, error) {
 	if err != nil {
 		return nil, errors.Trace(err)
 	}
+	se2, err := createSession(store)
+	if err != nil {
+		return nil, errors.Trace(err)
+	}
+	err = dom.LoadBindInfoLoop(se2, se2.parser)
+	if err != nil {
+		return nil, errors.Trace(err)
+	}
 
 	// get global system variable tidb_log_bin from mysql.GLOBAL_VARIABLES
 	tidbLogBin, err := se1.GetGlobalSysVar(variable.TiDBLogBin)
@@ -1419,7 +1427,7 @@ func createSessionWithDomain(store kv.Storage, dom *domain.Domain) (*session, er
 
 const (
 	notBootstrapped         = 0
-	currentBootstrapVersion = 27
+	currentBootstrapVersion = 28
 )
 
 func getStoreBootstrapVersion(store kv.Storage) int64 {

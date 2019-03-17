@@ -693,10 +693,10 @@ func (c *twoPhaseCommitter) execute(ctx context.Context) error {
 		return errors.Trace(err)
 	}
 
-	if vtmpMaxTxnTime, __fpErr := __fp_tmpMaxTxnTime.Acquire(); __fpErr == nil { defer __fp_tmpMaxTxnTime.Release(); tmpMaxTxnTime, __fpTypeOK := vtmpMaxTxnTime.(uint64); if !__fpTypeOK { goto __badTypetmpMaxTxnTime} 
-		 if tmpMaxTxnTime > 0 {
-		  c.maxTxnTimeUse = tmpMaxTxnTime
-		 }; __badTypetmpMaxTxnTime: __fp_tmpMaxTxnTime.BadType(vtmpMaxTxnTime, "uint64"); };
+	// gofail: var tmpMaxTxnTime uint64
+	// if tmpMaxTxnTime > 0 {
+	//  c.maxTxnTimeUse = tmpMaxTxnTime
+	// }
 
 	if c.store.oracle.IsExpired(c.startTS, c.maxTxnTimeUse) {
 		err = errors.Errorf("con:%d txn takes too much time, start: %d, commit: %d", c.connID, c.startTS, c.commitTS)

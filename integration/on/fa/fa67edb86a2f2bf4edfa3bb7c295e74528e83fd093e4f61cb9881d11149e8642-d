@@ -1,7 +1,0 @@
-./format.go
-./generator.go
-./saver.go
-./timestamp.go
-./types.go
-./uuid.go
-./version.go

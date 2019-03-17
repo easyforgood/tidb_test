@@ -3,7 +3,7 @@ package integration_test
 import (
 	"context"
 	"fmt"
-	"testing"
+	// "testing"
 	"time"
 
 	. "github.com/pingcap/check"
@@ -18,9 +18,9 @@ import (
 
 var _ = Suite(&testIntegrationSuite{})
 
-func Test(t *testing.T) {
-	TestingT(t)
-}
+// func Test(t *testing.T) {
+// 	TestingT(t)
+// }
 
 type testIntegrationSuite struct {
 	lease     time.Duration

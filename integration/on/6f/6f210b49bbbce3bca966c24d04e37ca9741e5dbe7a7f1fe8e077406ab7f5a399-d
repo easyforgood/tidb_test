@@ -1,5 +1,0 @@
-./digester.go
-./lexer.go
-./misc.go
-./parser.go
-./yy_parser.go
